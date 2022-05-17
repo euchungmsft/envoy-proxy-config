@@ -260,4 +260,3 @@ Some research's done for all these Redis proxies listed below other than Envoy p
 
 - [corvus](https://github.com/eleme/corvus), sentinel/cluster base, Azure Cache for Redis never allows you to access this level. supported commands are very limited, AUTH's not supported
 
-no luck by code changes myself for dynamo and nutcracker :-)
