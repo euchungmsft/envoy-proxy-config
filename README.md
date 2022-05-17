@@ -197,7 +197,7 @@ static_resources:
 - except for reads, all reads goes to cluser 1
 - rest of all requests goes to cluster 1
 
-Becareful with connection configs for both clusters
+Be mindful of connection configs for both clusters
 
 ```
     connect_timeout: 0.5s
