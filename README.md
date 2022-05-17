@@ -234,3 +234,21 @@ Be mindful of connection configs for both clusters
 Some efforts are required to fine tune these values based upon your environment, Redis config and SKUs
 
 If you want to make some changes on these, you need to rebuild the container images
+
+
+## What others
+
+Some research's done for all these Redis proxies other than Envoy proxy. `predixy` may be the only one still being maintained anyhow
+
+- dynamo, replication works perfectly across the Redises but AUTH's not supported. And it's no longer maintained
+
+- twemproxy, dynamo's forked from this. but it's for sharding not for replicating across the Redises. And upstream authentication has to be the same with downstream. Because Azure Cache for Redis never allows you to put/set password for the instance, both instances never can be same with authentication keys
+
+- predixy, easy to use but one cluster config with one password
+
+- codis, sentinel/cluster base, Azure Cache for Redis never allows you to access this level
+
+- redis-cerberus, sentinel/cluster base, Azure Cache for Redis never allows you to access this level
+
+- corvus, sentinel/cluster base, Azure Cache for Redis never allows you to access this level
+
