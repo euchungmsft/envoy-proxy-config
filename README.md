@@ -1,10 +1,18 @@
 # envoy-proxy-config
 Envoy proxy configs on Azure environment
 
-
 Configuration looks like this
 
 ![Components and Elements](media/config02.png)
+
+This config comes up with various scenarios such as 
+
+- Cross regional/site Active-Active HA
+- Cross regional/site Active-Active DR
+- Migration/transition 
+- Cloud bursting 
+
+and so on, Redis Enterprise is recommendable for all above scenarios but not always coule be the final solution
 
 ## How to run
 
