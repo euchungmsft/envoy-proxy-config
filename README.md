@@ -55,6 +55,8 @@ az deployment group create \
  -f iac/bicep/services-main.bicep
 ```
 
+All next steps are based on docker containers and AKS. Same thing can be done with VMs. You can simply config just as the same with Envoy on VMs
+
 3. Running `envoy-redis-proxy` locally
 
 After install docker and start by running `service docker start`
@@ -134,6 +136,8 @@ spec:
         - name: "REDIS2_AUTH"
           value: "{your redis2 acess key}"
 ```
+
+Other than these configruation, try to make some changes on resource allocations, scalings, schedulings and so on upon your preference
 
 Deploy them to your AKS
 
@@ -260,3 +264,9 @@ Some research's done for all these Redis proxies listed below other than Envoy p
 
 - [corvus](https://github.com/eleme/corvus), sentinel/cluster base, Azure Cache for Redis never allows you to access this level. supported commands are very limited, AUTH's not supported
 
+## Notes on all these approaches
+
+What's trade-offs
+- Latency, try to fine-tune for connection settings for both of downstream and upstrean
+- Security, there's no password for downstreams in the example configuration instucted above, you can add downstream password if neccessary
+- Versions, Envoy is one of the fastest changing components out there in the market by community efforts. All above detail's based on up-to-date versions as of now but if you find any latest ones, consider to appy newer version
