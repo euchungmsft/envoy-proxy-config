@@ -1,3 +1,9 @@
+memo/
+logs/
+tmp/
+**/tmp/
+temp/
+
 # Compiled class file
 *.class
 
