@@ -76,11 +76,11 @@ sudo docker run -it --name envoy-redis-proxy \
 redis-cli -h localhost -p 6479
 ```
 
-No AUTH's neccessary
+No AUTH's required for downstream
 
 Open http://localhost:8001 for admin page
 
-Use prefix `$` to mirror the traffic to REDIS2
+Use prefix `$` (dollar sign) for the keys to mirror the traffic to REDIS2
 
 ```
 set $a a1
