@@ -10,9 +10,10 @@ This config comes up with various scenarios such as
 - Cross regional/site Active-Active HA
 - Cross regional/site Active-Active DR
 - Migration/transition 
-- Cloud bursting 
+- Cloud bursting at hybrid cloud environment
+- Session replication across the sites for client state 
 
-and so on, Redis Enterprise is recommendable for all above scenarios but not always coule be the final solution
+and so on, Redis Enterprise is recommendable for these scenarios but not always coule be the best fit
 
 ## How to run
 
@@ -42,7 +43,7 @@ module stgRedis2 'services/redis-template.bicep' = {
 }
 ```
 
-Update `location1`, `location2` and `redis1`, `redis2`
+Update `location1`, `location2` and `redis1`, `redis2` with yours
 
 2. Provision Azure Cache for Redis resources 
 
@@ -54,7 +55,7 @@ az deployment group create \
  -f iac/bicep/services-main.bicep
 ```
 
-3. Running envoy-redis-proxy locally
+3. Running `envoy-redis-proxy` locally
 
 After install docker and start by running `service docker start`
 
@@ -76,7 +77,7 @@ sudo docker run -it --name envoy-redis-proxy \
  envoy-redis-proxy:latest 
 ``` 
 
-`envoy-redis-proxy`, the container image can be found from [here](https://hub.docker.com/repository/docker/nudbeach/envoy-redis-proxy)
+`envoy-redis-proxy`, the container image is ready to download [here](https://hub.docker.com/repository/docker/nudbeach/envoy-redis-proxy)
 
 4. Testing locally
 
@@ -239,16 +240,15 @@ Be mindful of connection configs for both clusters
 
 ```
 
-Some efforts are required to fine tune these values based upon your environment, Redis config and SKUs
+Some efforts are required to fine-tune these values based upon your environment, Redis config and SKUs, Sentinels, Clusters and so on
 
 If you want to make some changes on these, you need to rebuild the container images
 
+## What others do
 
-## What others
+Some research's done for all these Redis proxies listed below other than Envoy proxy. `predixy` may be the only one still being maintained anyhow
 
-Some research's done for all these Redis proxies other than Envoy proxy. `predixy` may be the only one still being maintained anyhow
-
-- [dynomite](https://github.com/Netflix/dynomite), replication works perfectly across the Redises but AUTH's not supported. And it's no longer maintained. single-threaded
+- [dynomite](https://github.com/Netflix/dynomite), replication works perfectly across the Redises but AUTH's not supported. And it seems it's no longer maintained. single-threaded
 
 - [twemproxy(nutcracker)](https://github.com/twitter/twemproxy), dynamo's forked from this. but it's for sharding not for replicating across the Redises. And upstream authentication has to be the same with downstream. Because Azure Cache for Redis never allows you to put/set password for the instance, both instances never can be same with authentication keys
 
