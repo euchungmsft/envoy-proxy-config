@@ -240,15 +240,16 @@ If you want to make some changes on these, you need to rebuild the container ima
 
 Some research's done for all these Redis proxies other than Envoy proxy. `predixy` may be the only one still being maintained anyhow
 
-- dynamo, replication works perfectly across the Redises but AUTH's not supported. And it's no longer maintained
+- [dynomite](https://github.com/Netflix/dynomite), replication works perfectly across the Redises but AUTH's not supported. And it's no longer maintained. single-threaded
 
-- twemproxy, dynamo's forked from this. but it's for sharding not for replicating across the Redises. And upstream authentication has to be the same with downstream. Because Azure Cache for Redis never allows you to put/set password for the instance, both instances never can be same with authentication keys
+- [twemproxy(nutcracker)](https://github.com/twitter/twemproxy), dynamo's forked from this. but it's for sharding not for replicating across the Redises. And upstream authentication has to be the same with downstream. Because Azure Cache for Redis never allows you to put/set password for the instance, both instances never can be same with authentication keys
 
-- predixy, easy to use but one cluster config with one password
+- [predixy](https://github.com/joyieldInc/predixy), easy to use but one cluster config with one password
 
-- codis, sentinel/cluster base, Azure Cache for Redis never allows you to access this level
+- [codis](https://github.com/CodisLabs/codis), sentinel/cluster base, Azure Cache for Redis never allows you to access this level
 
-- redis-cerberus, sentinel/cluster base, Azure Cache for Redis never allows you to access this level
+- [redis-cerberus](https://github.com/projecteru/redis-cerberus), sentinel/cluster base, Azure Cache for Redis never allows you to access this level. supported commands are very limited, AUTH's not supported
 
-- corvus, sentinel/cluster base, Azure Cache for Redis never allows you to access this level
+- [corvus](https://github.com/eleme/corvus), sentinel/cluster base, Azure Cache for Redis never allows you to access this level. supported commands are very limited, AUTH's not supported
 
+no luck by code changes myself for dynamo and nutcracker :-)
