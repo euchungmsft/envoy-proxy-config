@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: envoy-redis-proxy
+  labels:
+    app: envoy-redis-proxy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: envoy-redis-proxy
+  template:
+    metadata:
+      labels:
+        app: envoy-redis-proxy
+    spec:
+      containers:
+      - name: envoy-redis-proxy
+        image: nudbeach/envoy-redis-proxy:latest
+        imagePullPolicy: Always
+        ports:
+        - name: envoy-admin
+          containerPort: 8001
+        - name: redis
+          containerPort: 6479
+        env:
+        - name: "SSL"
+          value: "1"
+        - name: "DEBUG"
+          value: "1"
+        - name: "CONCURRENCY"
+          value: "5"
+        - name: "ADMIN_PORT"
+          value: "8001"
+        - name: "LISTEN_PORT"
+          value: "6479"
+        - name: "PREFIX_STRING"
+          value: "$"
+        - name: "REDIS1_HOST"
+          value: "redis-krc-001.redis.cache.windows.net"
+        - name: "REDIS1_PORT"
+          value: "6380"
+        - name: "REDIS1_AUTH"
+          value: "sivZ8yknWZRF1yCMS8pKZdxL4xsAvnjAUAzCaNogjV4="
+        - name: "REDIS2_HOST"
+          value: "redis-krs-001.redis.cache.windows.net"
+        - name: "REDIS2_PORT"
+          value: "6380"
+        - name: "REDIS2_AUTH"
+          value: "ZEiu4RjhOaZEh6RNYveHahDVABi0ucpFcAzCaFrD8BA="
